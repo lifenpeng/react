@@ -8,6 +8,7 @@
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
     "react-scripts": "2.1.5",
+    "react-transition-group": "^2.5.3",
     "ts-pnp": "^1.0.0"
   },
   "scripts": {
