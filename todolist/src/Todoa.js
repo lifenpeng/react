@@ -7,12 +7,25 @@ class Todoa extends Component {
     constructor(props){
         super(props);
         this.state = store.getState();
+        this.handleChange = this.handleChange.bind(this);
+        this.handleStoreChange = this.handleStoreChange.bind(this);
+        this.handleBtnClick = this.handleBtnClick.bind(this);
+        //只要store里的值发生变化 subscribe() 传入一个方法  就会执行这个方法 
+        store.subscribe(this.handleStoreChange);
     }
 
     render(){
         return <Fragment>
-            <Input value={this.state.inputValue} placeholder="search" style={{width:'300px',margin:'15px'}}/>
-            <Button type="primary">Primary</Button>
+            <Input 
+            value={this.state.inputValue} 
+            placeholder="search" 
+            style={{width:'300px',margin:'15px'}}
+            onChange={this.handleChange}
+            />
+            <Button 
+            type="primary"
+            onClick = {this.handleBtnClick}
+            >Primary</Button>
             <List
             style={{width:'390px', margin:'0px 15px'}}
             bordered
@@ -21,6 +34,27 @@ class Todoa extends Component {
             />
         </Fragment>
     }
+
+    handleChange(e){
+        const action = {
+            type:'change_input_value',
+            value:e.target.value
+        }
+        store.dispatch(action);
+    }
+
+    handleStoreChange(){
+        this.setState(store.getState());
+    }
+
+    handleBtnClick(e){
+        const action = {
+            type:'add_todo_item',
+            value:this.state.inputValue
+        }
+        store.dispatch(action);
+    }
+
 }
 
 export default Todoa;
