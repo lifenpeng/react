@@ -1,17 +1,24 @@
+import {CHANGE_INPUT_VALUE,ADD_TODO_ITEM,DEL_TODO_ITEM} from './actionTypes';
 const defaultState = {
-    inputValue:'111',
-    list:['123','456']
+    inputValue:'',
+    list:[]
 };
 //reducer 可以接收state  但是不可以绝不能修改state的值
 export default (state = defaultState,action)=>{
-    if(action.type==='change_input_value'){
-        var newState = JSON.parse(JSON.stringify(state));//简单的深拷贝
+    if(action.type===CHANGE_INPUT_VALUE){
+        const newState = JSON.parse(JSON.stringify(state));//简单的深拷贝
         newState.inputValue = action.value;
         return newState;
     }
-    if(action.type==='add_todo_item'){
-        var newState = JSON.parse(JSON.stringify(state));
+    if(action.type===ADD_TODO_ITEM){
+        const newState = JSON.parse(JSON.stringify(state));
         newState.list.push(action.value);
+        newState.inputValue = '';
+        return newState;
+    }
+    if(action.type===DEL_TODO_ITEM){
+        const newState = JSON.parse(JSON.stringify(state));
+        newState.list.splice(action.index,1);
         return newState;
     }
     return state;//存储的所有数据

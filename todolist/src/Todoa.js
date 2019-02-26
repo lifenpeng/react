@@ -2,6 +2,7 @@ import React,{Component,Fragment} from 'react';
 import 'antd/dist/antd.css';
 import { Input,Button,List } from 'antd';
 import store from './store';
+import { changeInputAction,addTodoItemAction,delTodoItemAction } from './store/actionCreator';
 
 class Todoa extends Component {
     constructor(props){
@@ -30,16 +31,13 @@ class Todoa extends Component {
             style={{width:'390px', margin:'0px 15px'}}
             bordered
             dataSource={this.state.list}
-            renderItem={item => (<List.Item>{item}</List.Item>)}
+            renderItem={(item,index) => (<List.Item onClick={this.handleDel.bind(this,index)}>{item}</List.Item>)}
             />
         </Fragment>
     }
 
     handleChange(e){
-        const action = {
-            type:'change_input_value',
-            value:e.target.value
-        }
+        const action = changeInputAction(e.target.value);
         store.dispatch(action);
     }
 
@@ -48,10 +46,12 @@ class Todoa extends Component {
     }
 
     handleBtnClick(e){
-        const action = {
-            type:'add_todo_item',
-            value:this.state.inputValue
-        }
+        const action = addTodoItemAction(this.state.inputValue);
+        store.dispatch(action);
+    }
+
+    handleDel(index){
+        const action = delTodoItemAction(index);
         store.dispatch(action);
     }
 
