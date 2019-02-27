@@ -1,6 +1,5 @@
-import React,{Component,Fragment} from 'react';
-import 'antd/dist/antd.css';
-import { Input,Button,List } from 'antd';
+import React,{Component} from 'react';
+import TodoaUI from './TodoaUI';
 import store from './store';
 import { changeInputAction,addTodoItemAction,delTodoItemAction } from './store/actionCreator';
 
@@ -11,29 +10,19 @@ class Todoa extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleStoreChange = this.handleStoreChange.bind(this);
         this.handleBtnClick = this.handleBtnClick.bind(this);
+        this.handleDel = this.handleDel.bind(this);
         //只要store里的值发生变化 subscribe() 传入一个方法  就会执行这个方法 
         store.subscribe(this.handleStoreChange);
     }
 
     render(){
-        return <Fragment>
-            <Input 
-            value={this.state.inputValue} 
-            placeholder="search" 
-            style={{width:'300px',margin:'15px'}}
-            onChange={this.handleChange}
-            />
-            <Button 
-            type="primary"
-            onClick = {this.handleBtnClick}
-            >Primary</Button>
-            <List
-            style={{width:'390px', margin:'0px 15px'}}
-            bordered
-            dataSource={this.state.list}
-            renderItem={(item,index) => (<List.Item onClick={this.handleDel.bind(this,index)}>{item}</List.Item>)}
-            />
-        </Fragment>
+        return <TodoaUI
+            inputValue = {this.state.inputValue}
+            handleChange = {this.handleChange}
+            handleBtnClick = {this.handleBtnClick}
+            list = {this.state.list}
+            handleDel = {this.handleDel}
+        />;
     }
 
     handleChange(e){
