@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import TodoaUI from './TodoaUI';
 import store from './store';
-import { changeInputAction,addTodoItemAction,delTodoItemAction } from './store/actionCreator';
+import { changeInputAction,addTodoItemAction,delTodoItemAction,getInitList } from './store/actionCreator';
 
 class Todoa extends Component {
     constructor(props){
@@ -23,6 +23,11 @@ class Todoa extends Component {
             list = {this.state.list}
             handleDel = {this.handleDel}
         />;
+    }
+
+    componentDidMount(){
+        const action = getInitList();
+        store.dispatch(action);
     }
 
     handleChange(e){
