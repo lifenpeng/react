@@ -21,6 +21,23 @@ export const Nav = styled.div`
     width:960px;
     height:100%;
     margin:0 auto;
+    i{
+        margin-left:-30px;
+    }
+    .slide-enter {
+        width:160px;
+        transition:all .2s ease-out;
+    }
+    .slide-enter-active {
+        width:200px;
+    }
+    .slide-exit {
+        width:240px;
+        transition:all .2s ease-out;
+    }
+    .slide-exit-active {
+        width:  160px;
+    }
 `
 
 export const NavItem = styled.div`
@@ -30,6 +47,9 @@ export const NavItem = styled.div`
     &.right {
         float:right;
         color:#969696;
+        i{
+            font-size:24px;
+        }
     }
     &.active {
         color:#ea6f5a;
@@ -55,8 +75,12 @@ export const NavSearch = styled.input.attrs({
     margin-left:20px;
     padding:0px 20px;
     font-size:14px;
+    padding-right:35px;
     &::placeholder {
         color:#999;
+    }
+    &.focused {
+        width:240px;
     }
 `
 
@@ -82,5 +106,9 @@ export const Button = styled.div`
     }
     &.art {
         color:#ec6149;
+        i{
+            padding-right:5px;
+            padding-top:5px;
+        }
     }
 `
