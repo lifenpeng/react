@@ -21,9 +21,6 @@ export const Nav = styled.div`
     width:960px;
     height:100%;
     margin:0 auto;
-    i{
-        margin-left:-30px;
-    }
     .slide-enter {
         width:160px;
         transition:all .2s ease-out;
@@ -61,6 +58,19 @@ export const NavItem = styled.div`
     color:#333;
 `
 
+export const SearchBody = styled.div`
+    min-width:160px;
+    height:38px;
+    margin-left:20px;
+    float:left;
+    position:relative;
+    i{
+        position: absolute;
+        right:10px;
+        top:20px;
+    }
+`
+
 export const NavSearch = styled.input.attrs({
     placeholder:'搜索'
 })`
@@ -72,7 +82,6 @@ export const NavSearch = styled.input.attrs({
     border-radius:19px;
     background:#eee;
     margin-top:9px;
-    margin-left:20px;
     padding:0px 20px;
     font-size:14px;
     padding-right:35px;
@@ -82,6 +91,53 @@ export const NavSearch = styled.input.attrs({
     &.focused {
         width:240px;
     }
+`
+
+export const SearchInfo = styled.div`
+    width:250px;
+    height:auto;
+    position: absolute;
+    top:60px;
+    left:0px;
+    background-color: #fff;
+    box-shadow: 0 0 8px rgba(0,0,0,.2);
+    padding-bottom:20px;
+    border-radius:5px;
+`
+
+export const SearchInfoTitle = styled.div`
+    margin-top:20px;
+    margin-left:20px;
+    font-size:14px;
+    color:#969696;
+    float:left;
+`
+
+export const SearchInfoSwitch = styled.div`
+    margin-top:20px;
+    margin-right:20px;
+    font-size:14px;
+    color:#969696;
+    float:right;
+    cursor:pointer ;
+`
+
+export const SearchUl = styled.ul`
+    float:left;
+    width:100%;
+    line-height:20px;
+    height:auto;
+`
+export const SearchLi = styled.li`
+    float:left;
+    font-size: 12px;
+    color: #787878;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding:0px 5px;
+    font-size:12px;
+    margin-left:20px;
+    margin-top:10px;
 `
 
 export const AddTion = styled.div`

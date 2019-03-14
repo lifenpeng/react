@@ -7,10 +7,42 @@ import {
    Logo,
    Nav,
    NavItem,
+   SearchBody,
    NavSearch,
+   SearchInfo,
+   SearchInfoTitle,
+   SearchInfoSwitch,
+   SearchUl,
+   SearchLi,
    AddTion,
    Button
 } from './style';
+
+
+const searchShow = (show)=>{
+    if(show){
+        return (
+            <SearchInfo>
+                <SearchInfoTitle>热门搜索</SearchInfoTitle>
+                <SearchInfoSwitch>换一批</SearchInfoSwitch>
+                <SearchUl>
+                    <SearchLi>react-redux</SearchLi>
+                    <SearchLi>react-redux</SearchLi>
+                    <SearchLi>react-redux</SearchLi>
+                    <SearchLi>react-redux</SearchLi>
+                    <SearchLi>react-redux</SearchLi>
+                    <SearchLi>react-redux</SearchLi>
+                    <SearchLi>react-redux</SearchLi>
+                    <SearchLi>react-redux</SearchLi>
+                    <SearchLi>react-redux</SearchLi>
+                    <SearchLi>react-redux</SearchLi>
+                </SearchUl>
+            </SearchInfo>
+        )
+    }else{
+        return null;
+    }
+}
 
 function Header(props){
     return(<HeaderWrapper>
@@ -20,18 +52,21 @@ function Header(props){
         <NavItem className='left'>下载App</NavItem>
         <NavItem className='right'>登录</NavItem>
         <NavItem className='right'><i className='iconfont'>&#xe602;</i></NavItem>
-        <CSSTransition
-            in={props.focused}
-            timeout={200}
-            classNames='slide'
-        >
-            <NavSearch
-                className={props.focused?'focused':''}
-                onFocus={props.handleinputfocuse}
-                onBlur={props.handleinputblur}
-            ></NavSearch>
-        </CSSTransition>
-        <i className='iconfont'>&#xe615;</i>
+        <SearchBody>
+            <CSSTransition
+                in={props.focused}
+                timeout={200}
+                classNames='slide'
+            >
+                <NavSearch
+                    className={props.focused?'focused':''}
+                    onFocus={props.handleinputfocuse}
+                    onBlur={props.handleinputblur}
+                ></NavSearch>
+            </CSSTransition>
+            {searchShow(props.focused)}
+            <i className='iconfont'>&#xe615;</i>
+        </SearchBody>
     </Nav>
     <AddTion>
         <Button className='art'><i className='iconfont'>&#xe703;</i>写文章</Button>
@@ -42,7 +77,9 @@ function Header(props){
 
 const mapStateToProps = (state)=>{
     return {
-        focused:state.header.focused
+        //getIn 传入一个数组 表示获取state中 header 下 focused 的值 等价于下面写法
+        focused:state.getIn(['header','focused'])
+        //focused:state.get('header').get('focused')
     }
 }
 
@@ -57,4 +94,4 @@ const mapDispatchToProps = (dispatch)=>{
    }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Header);
+export default connect(mapStateToProps,mapDispatchToProps)(Header); 
