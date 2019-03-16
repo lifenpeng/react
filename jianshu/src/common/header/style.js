@@ -119,7 +119,16 @@ export const SearchInfoSwitch = styled.div`
     font-size:14px;
     color:#969696;
     float:right;
-    cursor:pointer ;
+    cursor:pointer;
+    position:relative;
+    i{
+        position:absolute;
+        display:block;
+        top:0px;
+        right:50px;  
+        transition:all .2s ease-in;
+        transform-origin:center center;
+    }
 `
 
 export const SearchUl = styled.ul`
@@ -136,8 +145,9 @@ export const SearchLi = styled.li`
     border-radius: 3px;
     padding:0px 5px;
     font-size:12px;
-    margin-left:20px;
+    margin-left:15px;
     margin-top:10px;
+    cursor:pointer;
 `
 
 export const AddTion = styled.div`

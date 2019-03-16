@@ -2,16 +2,31 @@ import * as headerActionType from './actionTypes';
 import { fromJS } from 'immutable';
 
 const defaultState = fromJS({
-    focused:false
+    focused:false,
+    mouseIn:false,
+    list:[],
+    page:1,
+    totalPage:0
 })
 
 export default (state = defaultState,action)=>{
-    if(action.type===headerActionType.SEARCH_FOCUS){
-        //immutable对象的set方法，会结合之前的immutable对象的值 和设置的值 返回一个全新对象
-        return state.set('focused',true);
+    switch(action.type){
+        case headerActionType.SEARCH_FOCUS:
+            return state.set('focused',true);
+        case headerActionType.SEARCH_BLUR:
+            return state.set('focused',false);   
+        case headerActionType.PUSH_LIST_VALUE:
+            return state.merge({
+                list:action.data,
+                totalPage:action.totalPage
+            });
+        case headerActionType.MOUSE_ENTER:
+            return state.set('mouseIn',true); 
+        case headerActionType.MOUSE_LEAVE:
+            return state.set('mouseIn',false);
+        case headerActionType.CHANGE_PAGE:
+            return state.set('page',action.page);          
+        default:
+            return state;    
     }
-    if(action.type===headerActionType.SEARCH_BLUR){
-        return state.set('focused',false);
-    }
-    return state;
 } 
