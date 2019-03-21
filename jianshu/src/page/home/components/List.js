@@ -1,6 +1,6 @@
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
-import { ListInfo,ListItem,ListItemLeft } from '../style';
+import { ListInfo,ListItem,ListItemLeft,ListItemMore } from '../style';
 
 class List extends Component{
     render(){
@@ -19,6 +19,7 @@ class List extends Component{
                         )
                     })
                 }
+                <ListItemMore>阅读更多</ListItemMore>
             </ListInfo>
         );
     }

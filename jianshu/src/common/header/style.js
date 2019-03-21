@@ -44,6 +44,7 @@ export const NavItem = styled.div`
     &.right {
         float:right;
         color:#969696;
+        cursor:pointer;
         i{
             font-size:24px;
         }
@@ -169,9 +170,11 @@ export const Button = styled.div`
     &.reg {
         background:#ec6149;
         color:#fff;
+        cursor:pointer;
     }
     &.art {
         color:#ec6149;
+        cursor:pointer;
         i{
             padding-right:5px;
             padding-top:5px;
