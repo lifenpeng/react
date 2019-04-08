@@ -1,11 +1,25 @@
-import React,{ Component } from 'react';
+import React,{ PureComponent } from 'react';
 import { HomeWrapper,HomeLeft,HomeRight } from './style';
+import { connect } from 'react-redux';
 import List from './components/List';
 import TopPic from './components/TopPic';
 import Recommond from './components/Recommond';
 import Writer from './components/Writer';
+import { actionCreatore } from './store';
+import { BackTop } from './style';
 
-class Home extends Component{
+//PureComponent（要结合immutable使用 否则会有一些坑） 避免组件无意义的渲染 可以手写shouldComponentUpdate声明周期函数代替  
+
+class Home extends PureComponent{
+
+    // shouldComponentUpdate(){
+    //     return false;
+    // }
+
+    handleScrollTop(){
+        window.scrollTo(0,0);
+    }
+
     render(){
         return (
             <HomeWrapper>
@@ -18,9 +32,42 @@ class Home extends Component{
                     <Recommond></Recommond>
                     <Writer></Writer>
                 </HomeRight>
+                { this.props.scrollShow?<BackTop onClick={this.handleScrollTop}>返回顶部</BackTop>:null }
             </HomeWrapper>
         );
     }
+
+    componentDidMount(){
+        this.props.changeHomeData();
+        this.bindEvents();
+    }
+
+    componentWillUnmount(){
+        window.removeEventListener('scroll',this.props.changScrollTopShow);
+    }
+
+    bindEvents(){
+        window.addEventListener('scroll',this.props.changScrollTopShow)
+    }
 }
 
-export default Home;
+const mapDispatch = (dispatch)=>{
+    return {
+        changeHomeData(){
+            dispatch(actionCreatore.getchangeHomeData());
+        },
+        changScrollTopShow(){
+            if(document.documentElement.scrollTop>200){
+                dispatch(actionCreatore.changScrollTop(true));
+            }else{
+                dispatch(actionCreatore.changScrollTop(false));
+            }
+        }
+    };
+}
+
+const mapState = (state)=>({
+    scrollShow:state.get('home').get('scrollShow')
+})
+
+export default connect(mapState,mapDispatch)(Home);

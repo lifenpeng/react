@@ -83,7 +83,7 @@ export const ListItemLeft = styled.div`
     float:left;
     font-size:14px;
     padding:15px 0px;
-    a {
+    div {
         font-size:18px;
         color:#000;
         font-size: 18px;
@@ -220,3 +220,18 @@ export const WriterAll = styled.div`
     line-height:35px;
     cursor:pointer;
 `;
+
+export const BackTop = styled.div`
+    width:80px;
+    height:80px;
+    border:1px solid #ddd;
+    position:fixed;
+    bottom:100px;
+    right:100px;
+    color:#000;
+    font-size:16px;
+    line-height:80px;
+    text-align:center;
+    cursor:pointer;
+    background:#ddd;
+`

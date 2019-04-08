@@ -1,3 +1,4 @@
 import HomeReducer from './reducer';
+import * as actionCreatore from './actionCreatore';
 
-export default HomeReducer;
+export { HomeReducer,actionCreatore };
