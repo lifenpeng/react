@@ -64,7 +64,7 @@ class Header extends Component{
                 <Nav>
                     <NavItem className='left active'>首页</NavItem>
                     <NavItem className='left'>下载App</NavItem>
-                    <NavItem className='right'>登录</NavItem>
+                    <Link to="/login"><NavItem className='right' >登录</NavItem></Link>
                     <NavItem className='right'><i className='iconfont'>&#xe602;</i></NavItem>
                     <SearchBody>
                         <CSSTransition
